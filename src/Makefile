@@ -1,0 +1,7 @@
+
+all: gpioset
+
+
+CFLAGS += -I.
+
+

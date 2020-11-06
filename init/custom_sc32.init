@@ -1,30 +1,78 @@
 #!/bin/sh
 
-CFG=/sys/kernel/config
-mount | grep $CFG
-[ $? -eq 0 ] || mount -t configfs none $CFG
-UART0=$CFG/device-tree/overlays/uart0
-mkdir -p $UART0
-cat /mnt/dtb.d/acq400_uart0.dtb > $UART0/dtbo
+mount | grep -q configfs || mount -t configfs none /sys/kernel/config/
+mkdir -p /sys/kernel/config/device-tree/overlays/elfx
+cat /mnt/dtb.d/acq2106_acq435elfx_sc_overlay.dtb > /sys/kernel/config/device-tree/overlays/elfx/dtbo
 
-stty -F /dev/ttyPS1 115200
-gpsd -n /dev/ttyPS1
+source /usr/local/bin/acq400_init_gpio_common.sh
 
-killall ntpd
-if [ -e /mnt/local/ntp.conf ]; then
-	cp /mnt/local/ntp.conf /etc
+# newstyle: good for groups gpiolib
+get_gpiodescr() {
+	chip=$(ls /sys/bus/i2c/devices/$1-$2/ | grep gpiochip)
+	echo ${chip#gpiochip*}
+}
+
+# old style: good for individual bits
+get_gpiochip() {
+	chip=$(ls /sys/bus/i2c/devices/$1-$2/gpio)
+	echo ${chip#gpiochip*}
+}
+
+configure_elfx() {
+	site=$1
+	i2c=$2
+	
+	descr20=$(get_gpiodescr $i2c 0020)
+	descr21=$(get_gpiodescr $i2c 0021)
+	
+	chip21=$(get_gpiochip $i2c 0021)
+
+	
+	mkdir -p /dev/acq400/$site
+	mkdir -p /dev/gpio/ELFX_SC/$site/
+	
+	(
+	cd /sys/class/gpio
+	LED1=$(($chip21+10))
+	echo export_gpio $LED1
+	export_gpio $LED1
+	ln -s /sys/class/gpio/gpio$LED1/value /dev/gpio/ELFX_SC/$site/LED1
+	setO gpio$LED1
+	
+	LED2=$(($chip21+11))
+	export_gpio $LED2
+	ln -s /sys/class/gpio/gpio$LED2/value /dev/gpio/ELFX_SC/$site/LED2
+	setO gpio$LED2
+	
+	pin=$(($chip21+12))
+	for LBL in FFC1 FFC2 FFC3 FFC4; do
+		export_gpio $pin
+		ln -s /sys/class/gpio/gpio$pin/value /dev/gpio/ELFX_SC/$site/$LBL
+		pin=$(($pin+1))
+	done
+	)
+		
+	echo site $site clear DAC RESET gpioset $descr21 8=1 
+	gpioset $descr21 8=1	
+}
+
+for site in 1 3 5; do
+	i2c=$(($site+1))
+	if [ -e /sys/bus/i2c/devices/${i2c}-0020/gpio ]; then
+		echo "ELFX-SC detected at site $site"
+		configure_elfx $site $i2c
+	fi
+done
+
+echo 9 > /proc/sys/kernel/printk
+echo file ad5696-i2c.c +p >/dev/ddc
+
+if [ -e /mnt/local/ad5686.ko ]; then
+echo "LOAD PATCH MODULES"
+/sbin/insmod /mnt/local/ad5686.ko dyndbg=+p
+/sbin/insmod /mnt/local/ad5696-i2c.ko dyndbg=+p
 else
-	cp /usr/local/CARE/GPSNTP/ntp.conf /etc/
+/sbin/insmod /usr/local/lib/modules/ad5686.ko
+/sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko
 fi
-/usr/sbin/ntpd.orig -G no
 
-nice monitor_gpsntp &
-ttyd -p 8080 gpsmon -n 2>&1 | logger -t gpsmon &
-ttyd -p 8081 /usr/local/bin/gps_trigger_mon 2>&1 &
-
-SERVER=$(/usr/local/CARE/get-ip-address)
-sed -i /var/www/d-tacq/acq_home_page.html \
- -e"/CUSTOM/i <p class=\"acqDetail\">GPS Status Terminals<br>" \
- -e"/CUSTOM/i <a class=\"acqLink\" href=\"http://${SERVER}:8081/\" onClick=\"return popup\(this, 'monitor_gps_trg'\)\">monitor_gps_trg</a><br>" \
- -e"/CUSTOM/i <a class=\"acqLink\" href=\"http://${SERVER}:8080/\" onClick=\"return popup\(this, 'gpsmon'\)\">gpsmon</a><br>" \
- -e"/CUSTOM/i </p>"

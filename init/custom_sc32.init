@@ -38,11 +38,13 @@ configure_elfx() {
 	export_gpio $LED1
 	ln -s /sys/class/gpio/gpio$LED1/value /dev/gpio/ELFX_SC/$site/LED1
 	setO gpio$LED1
+	setAL gpio$LED1
 	
 	LED2=$(($chip21+11))
 	export_gpio $LED2
 	ln -s /sys/class/gpio/gpio$LED2/value /dev/gpio/ELFX_SC/$site/LED2
 	setO gpio$LED2
+	setAL gpio$LED2
 	
 	pin=$(($chip21+12))
 	for LBL in FFC1 FFC2 FFC3 FFC4; do
@@ -76,3 +78,26 @@ else
 /sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko
 fi
 
+#configure_dac /sys/bus/iio/devices/iio:device1 dac1@elf1 1 1
+#configure_dac /sys/bus/iio/devices/iio:device2 dac9@elf1 1 9
+#configure_dac /sys/bus/iio/devices/iio:device3 dac17@elf1 1 17
+#configure_dac /sys/bus/iio/devices/iio:device4 dac25@elf1 1 25
+
+configure_dac() {
+    node=$(basename $2)
+    site=${node#*@elf}
+    daclab=${node%@*}
+    c1=${daclab#*dac}
+	echo configure_dac $1 $node $site $c1
+	
+	for off in $(seq 0 7); do
+		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac$c1
+		c1=$(($c1+1))
+	done
+}
+	
+	
+for iiodev in /sys/bus/iio/devices/iio\:device*; do
+	node=$(ls -l $iiodev/ | grep of_node | awk '{ print $11}')
+	echo $node | grep -q /dac.*elf && configure_dac $iiodev $node
+done

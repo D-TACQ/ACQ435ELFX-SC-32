@@ -269,8 +269,8 @@ int main(int argc, char **argv)
 	}
 
 	rv = gpiod_ctxless_set_value_multiple(device, offsets, values,
-					      num_lines, active_low, "gpioset",
-					      mode->callback, &cbdata);
+						      num_lines, active_low, "gpioset",
+						      mode->callback, &cbdata);
 	if (rv < 0)
 		die_perror("error setting the GPIO line values");
 

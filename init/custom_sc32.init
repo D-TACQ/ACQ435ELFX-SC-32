@@ -1,0 +1,30 @@
+#!/bin/sh
+
+CFG=/sys/kernel/config
+mount | grep $CFG
+[ $? -eq 0 ] || mount -t configfs none $CFG
+UART0=$CFG/device-tree/overlays/uart0
+mkdir -p $UART0
+cat /mnt/dtb.d/acq400_uart0.dtb > $UART0/dtbo
+
+stty -F /dev/ttyPS1 115200
+gpsd -n /dev/ttyPS1
+
+killall ntpd
+if [ -e /mnt/local/ntp.conf ]; then
+	cp /mnt/local/ntp.conf /etc
+else
+	cp /usr/local/CARE/GPSNTP/ntp.conf /etc/
+fi
+/usr/sbin/ntpd.orig -G no
+
+nice monitor_gpsntp &
+ttyd -p 8080 gpsmon -n 2>&1 | logger -t gpsmon &
+ttyd -p 8081 /usr/local/bin/gps_trigger_mon 2>&1 &
+
+SERVER=$(/usr/local/CARE/get-ip-address)
+sed -i /var/www/d-tacq/acq_home_page.html \
+ -e"/CUSTOM/i <p class=\"acqDetail\">GPS Status Terminals<br>" \
+ -e"/CUSTOM/i <a class=\"acqLink\" href=\"http://${SERVER}:8081/\" onClick=\"return popup\(this, 'monitor_gps_trg'\)\">monitor_gps_trg</a><br>" \
+ -e"/CUSTOM/i <a class=\"acqLink\" href=\"http://${SERVER}:8080/\" onClick=\"return popup\(this, 'gpsmon'\)\">gpsmon</a><br>" \
+ -e"/CUSTOM/i </p>"

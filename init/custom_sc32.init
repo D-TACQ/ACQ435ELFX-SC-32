@@ -33,22 +33,20 @@ configure_elfx() {
 	
 	(
 	cd /sys/class/gpio
-	LED1=$(($chip21+10))
-	echo export_gpio $LED1
-	export_gpio $LED1
-	ln -s /sys/class/gpio/gpio$LED1/value /dev/gpio/ELFX_SC/$site/LED1
-	setO gpio$LED1
-	setAL gpio$LED1
 	
-	LED2=$(($chip21+11))
-	export_gpio $LED2
-	ln -s /sys/class/gpio/gpio$LED2/value /dev/gpio/ELFX_SC/$site/LED2
-	setO gpio$LED2
-	setAL gpio$LED2
+	pin=$(($chip21+10))
+	for LED in LED1 LED2; do
+		export_gpio $pin
+		ln -s /sys/class/gpio/gpio$pin/value /dev/gpio/ELFX_SC/$site/$LED
+		setO gpio$pin
+		setAL gpio$pin	 
+		pin=$(($pin+1))
+	done
 	
 	pin=$(($chip21+12))
 	for LBL in FFC1 FFC2 FFC3 FFC4; do
 		export_gpio $pin
+		setAL gpio$pin
 		ln -s /sys/class/gpio/gpio$pin/value /dev/gpio/ELFX_SC/$site/$LBL
 		pin=$(($pin+1))
 	done

@@ -11,6 +11,8 @@ record(ao, "${UUT}:${SITE}:SC32:OFFSET:ALL") {
 	field(HOPR, "2.4999")
 	field(LOPR, "-2.5")
 	field(EGU,  "V")
+	field(PINI, "YES")
+	field(VAL,   "0.0")
 	field(FLNK, "${UUT}:${SITE}:SC32:OFFSET:fan")
 }
 

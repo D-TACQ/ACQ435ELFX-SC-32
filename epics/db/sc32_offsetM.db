@@ -2,7 +2,7 @@
 record(ao, "${UUT}:${SITE}:SC32:OFFSET:ALL") {
 	field(DTYP, "Soft Channel")        
 	field(SCAN, "Passive")
-	field(DESC, "Offset ${cid}")
+	field(DESC, "Offset ALL")
 	field(DRVL, "-2.5")
 	field(DRVH, "+2.4999")
 	field(LINR, "LINEAR")

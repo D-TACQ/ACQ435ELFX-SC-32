@@ -15,6 +15,7 @@ init_sc32_site() {
 	done
 	dblr '"db/sc32_offsetM.db","'${cprams}'"'
 	dblr '"db/sc32_gainM.db","'${cprams}'"'
+	dblr '"db/sc32_gain_mux.db","'${cprams}'"'
 	dblr '"db/sc32_indicators.db","'${cprams}'"'
 }
 

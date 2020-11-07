@@ -35,6 +35,6 @@ record (bi, "${UUT}:${SITE}:SC32:GAIN:VALID") {
 	field(DTYP, "Soft Channel")
 }
 
-record (bo, "{UUT}:${SITE}:SC32:GAIN:COMMIT") {
+record (bo, "${UUT}:${SITE}:SC32:GAIN:COMMIT") {
 	
 }

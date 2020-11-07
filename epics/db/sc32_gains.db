@@ -25,11 +25,6 @@ record (mbbo, "${UUT}:${SITE}:SC32:G2:${CH}")	{
 
 }
 
-record(dfanout, "${UUT}:${SITE}:GAIN:fan${FAN}") {
-	field(OUT${fan}, "${UUT}:${SITE}:GAIN:${CH} PP")
-}
-
-
 record (longout, "${UUT}:${SITE}:SC32:G12:${CH}") {
 	field(DTYP, "Soft Channel")
 }

@@ -1,0 +1,160 @@
+# ACQ423 : WORKTODO
+
+record (mbbo, "${UUT}:${SITE}:SC32:G1:ALL") {	
+	field(DTYP, "Soft Channel")
+	field(NOBT, "2")	
+	field(ZRST, "1")
+	field(ONST, "10")
+	field(TWST, "100")
+	field(THST, "1000")
+	field(ZRVL, "0")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(FLNK, "${UUT}:${SITE}:SC32:G1:fan")
+}
+
+record (mbbo, "${UUT}:${SITE}:SC32:G2:ALL") {
+	field(DTYP, "Soft Channel")
+	field(NOBT, "2")	
+	field(ZRST, "1")
+	field(ONST, "2")
+	field(TWST, "5")
+	field(THST, "10")
+	field(ZRVL, "0")
+	field(ONVL, "1")
+	field(TWVL, "2")
+	field(THVL, "3")
+	field(FLNK, "${UUT}:${SITE}:SC32:G2:fan")
+
+}
+record(dfanout, "${UUT}:${SITE}:SC32:G1:fan") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G1:fan1 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G1:fan2 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G1:fan3 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G1:fan4 PP")
+	field(DOL,  "${UUT}:${SITE}:SC32:G1:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G1:fan1") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G1:01 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G1:02 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G1:03 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G1:04 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G1:05 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G1:06 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G1:07 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G1:08 PP")
+	field(DOL,  "${UUT}:${SITE}:SC32:G1:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G1:fan2") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G1:09 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G1:10 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G1:11 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G1:12 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G1:13 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G1:14 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G1:15 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G1:16 PP")	
+	field(DOL,  "${UUT}:${SITE}:SC32:G1:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G1:fan3") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G1:17 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G1:18 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G1:19 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G1:20 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G1:21 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G1:22 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G1:23 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G1:24 PP")	
+	field(DOL,  "${UUT}:${SITE}:SC32:G1:ALL")
+	field(OMSL, "closed_loop")
+}
+record(dfanout, "${UUT}:${SITE}:SC32:G1:fan4") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G1:25 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G1:26 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G1:27 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G1:28 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G1:29 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G1:30 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G1:31 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G1:32 PP")	
+	field(DOL,  "${UUT}:${SITE}:SC32:G1:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G2:fan") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G2:fan1 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G2:fan2 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G2:fan3 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G2:fan4 PP")
+	field(DOL,  "${UUT}:${SITE}:SC32:G2:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G2:fan1") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G2:01 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G2:02 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G2:03 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G2:04 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G2:05 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G2:06 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G2:07 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G2:08 PP")
+	field(DOL,  "${UUT}:${SITE}:SC32:G2:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G2:fan2") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G2:09 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G2:10 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G2:11 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G2:12 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G2:13 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G2:14 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G2:15 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G2:16 PP")	
+	field(DOL,  "${UUT}:${SITE}:SC32:G2:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:G2:fan3") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G2:17 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G2:18 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G2:19 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G2:20 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G2:21 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G2:22 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G2:23 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G2:24 PP")	
+	field(DOL,  "${UUT}:${SITE}:SC32:G2:ALL")
+	field(OMSL, "closed_loop")
+}
+record(dfanout, "${UUT}:${SITE}:SC32:G2:fan4") {
+	field(OUTA, "${UUT}:${SITE}:SC32:G2:25 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:G2:26 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:G2:27 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G2:28 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G2:29 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:G2:30 PP")
+	field(OUTG, "${UUT}:${SITE}:SC32:G2:31 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:G2:32 PP")	
+	field(DOL,  "${UUT}:${SITE}:SC32:G2:ALL")
+	field(OMSL, "closed_loop")
+	field(FLNK, "${UUT}:${SITE}:GAIN_CHANGES")
+}
+
+
+record (calc, "${UUT}:${SITE}:GAIN_CHANGES") {
+	field(INPA, "${UUT}:${SITE}:GAIN_CHANGES")
+	field(CALC, "A+1")
+}
+
+record (longout, "${UUT}:${SITE}:SC32:G12:ALL") {
+	field(DTYP, "Soft Channel")
+}

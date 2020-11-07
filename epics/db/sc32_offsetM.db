@@ -1,0 +1,73 @@
+# ao420fmc.db - DC set, gains, AWG gain and offset. Master
+record(ao, "${UUT}:${SITE}:SC32:OFFSET:ALL") {
+	field(DTYP, "Soft Channel")        
+	field(SCAN, "Passive")
+	field(DESC, "Offset ${cid}")
+	field(DRVL, "-2.5")
+	field(DRVH, "+2.4999")
+	field(LINR, "LINEAR")
+	field(ESLO, "76.2939e-6")            # 5/65535
+	field(EOFF, "2.5")
+	field(HOPR, "2.4999")
+	field(LOPR, "-2.5")
+	field(EGU,  "V")
+	field(FLNK, "${UUT}:${SITE}:SC32:OFFSET:fan")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan") {
+	field(OUTA, "${UUT}:${SITE}:SC32:OFFSET:fan1 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:OFFSET:fan2 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:OFFSET:fan3 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:OFFSET:fan4 PP")
+	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(OMSL, "closed_loop")
+}
+
+record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan1") {
+	field(OUTA, "${UUT}:${SITE}:SC32:OFFSET:01 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:OFFSET:02 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:OFFSET:03 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:OFFSET:04 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:OFFSET:05 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:06 PP")		
+	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:07 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:08 PP")
+	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(OMSL, "closed_loop")
+}
+record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan2") {
+	field(OUTA, "${UUT}:${SITE}:SC32:OFFSET:09 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:OFFSET:10 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:OFFSET:11 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:OFFSET:12 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:OFFSET:13 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:14 PP")		
+	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:15 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:16 PP")
+	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(OMSL, "closed_loop")
+}
+record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan3") {
+	field(OUTA, "${UUT}:${SITE}:SC32:OFFSET:17 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:OFFSET:18 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:OFFSET:19 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:OFFSET:20 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:OFFSET:21 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:22 PP")		
+	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:23 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:24 PP")
+	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(OMSL, "closed_loop")
+}
+record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan4") {
+	field(OUTA, "${UUT}:${SITE}:SC32:OFFSET:25 PP")
+	field(OUTB, "${UUT}:${SITE}:SC32:OFFSET:26 PP")
+	field(OUTC, "${UUT}:${SITE}:SC32:OFFSET:27 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:OFFSET:28 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:OFFSET:29 PP")
+	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:30 PP")		
+	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:31 PP")
+	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:32 PP")
+	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(OMSL, "closed_loop")
+}

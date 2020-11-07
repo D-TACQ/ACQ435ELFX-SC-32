@@ -1,0 +1,40 @@
+# sc32_indicators: LEDS, FFC indication.
+
+record (bo, "${UUT}:${SITE}:SC32:LED:1") {
+	field(DTYP, "boAcqHost")	
+	field(OUT, "@/dev/gpio/ELFX_SC/${SITE}/LED1")    
+}
+
+record (bo, "${UUT}:${SITE}:SC32:LED:2") {
+	field(DTYP, "boAcqHost")	
+	field(OUT, "@/dev/gpio/ELFX_SC/${SITE}/LED2")    
+}
+
+record (bi, "${UUT}:${SITE}:SC32:FFC:1") {
+	field(DTYP, "biAcqHost")
+	field(INP, "@/dev/gpio/ELFX_SC/${SITE}/FFC1")
+	field(PINI, "YES")
+}
+record (bi, "${UUT}:${SITE}:SC32:FFC:2") {
+	field(DTYP, "biAcqHost")
+	field(INP, "@/dev/gpio/ELFX_SC/${SITE}/FFC2")
+	field(PINI, "YES")
+}
+record (bi, "${UUT}:${SITE}:SC32:FFC:3") {
+	field(DTYP, "biAcqHost")
+	field(INP, "@/dev/gpio/ELFX_SC/${SITE}/FFC3")
+	field(PINI, "YES")
+}
+record (bi, "${UUT}:${SITE}:SC32:FFC:4") {
+	field(DTYP, "biAcqHost")
+	field(INP, "@/dev/gpio/ELFX_SC/${SITE}/FFC4")
+	field(PINI, "YES")
+}
+
+record (bi, "${UUT}:${SITE}:SC32:GAIN:VALID") {
+	field(DTYP, "Soft Channel")
+}
+
+record (bo, "{UUT}:${SITE}:SC32:GAIN:COMMIT") {
+	
+}

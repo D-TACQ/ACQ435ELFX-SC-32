@@ -1,0 +1,15 @@
+record(ao, "${UUT}:${SITE}:SC32:OFFSET:${cid}") {
+	field(DTYP, "dsSysfsAo")
+	field(OUT, "@/dev/acq400.${SITE}.knobs/dac${cid}")
+	field(SCAN, "Passive")
+	field(DESC, "Offset ${cid}")
+	field(DRVL, "-2.5")
+	field(DRVH, "+2.4999")
+	field(LINR, "LINEAR")
+	field(ESLO, "76.2939e-6")            # 5/65535
+	field(EOFF, "2.5")
+	field(HOPR, "2.4999")
+	field(LOPR, "-2.5")
+	field(EGU,  "V")
+}
+

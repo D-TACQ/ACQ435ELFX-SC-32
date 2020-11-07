@@ -19,7 +19,7 @@ record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan") {
 	field(OUTB, "${UUT}:${SITE}:SC32:OFFSET:fan2 PP")
 	field(OUTC, "${UUT}:${SITE}:SC32:OFFSET:fan3 PP")
 	field(OUTD, "${UUT}:${SITE}:SC32:OFFSET:fan4 PP")
-	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(DOL,  "${UUT}:${SITE}:SC32:OFFSET:ALL")
 	field(OMSL, "closed_loop")
 }
 
@@ -32,7 +32,7 @@ record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan1") {
 	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:06 PP")		
 	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:07 PP")
 	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:08 PP")
-	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(DOL,  "${UUT}:${SITE}:SC32:OFFSET:ALL")
 	field(OMSL, "closed_loop")
 }
 record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan2") {
@@ -44,7 +44,7 @@ record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan2") {
 	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:14 PP")		
 	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:15 PP")
 	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:16 PP")
-	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(DOL,  "${UUT}:${SITE}:SC32:OFFSET:ALL")
 	field(OMSL, "closed_loop")
 }
 record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan3") {
@@ -56,7 +56,7 @@ record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan3") {
 	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:22 PP")		
 	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:23 PP")
 	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:24 PP")
-	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(DOL,  "${UUT}:${SITE}:SC32:OFFSET:ALL")
 	field(OMSL, "closed_loop")
 }
 record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan4") {
@@ -68,6 +68,6 @@ record(dfanout, "${UUT}:${SITE}:SC32:OFFSET:fan4") {
 	field(OUTF, "${UUT}:${SITE}:SC32:OFFSET:30 PP")		
 	field(OUTG, "${UUT}:${SITE}:SC32:OFFSET:31 PP")
 	field(OUTH, "${UUT}:${SITE}:SC32:OFFSET:32 PP")
-	field(DOL,  "${UUT}:${SITE}:AO:SLOW_SET:CH:ALL")
+	field(DOL,  "${UUT}:${SITE}:SC32:OFFSET:ALL")
 	field(OMSL, "closed_loop")
 }

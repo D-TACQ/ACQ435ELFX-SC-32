@@ -1,5 +1,7 @@
 #!/bin/sh
 
+[ -e /mnt/local/sysconfig/sc32.sh ] && source /mnt/local/sysconfig/sc32.sh
+
 mount | grep -q configfs || mount -t configfs none /sys/kernel/config/
 mkdir -p /sys/kernel/config/device-tree/overlays/elfx
 cat /mnt/dtb.d/acq2106_acq435elfx_sc_overlay.dtb > /sys/kernel/config/device-tree/overlays/elfx/dtbo
@@ -76,8 +78,8 @@ echo "LOAD PATCH MODULES"
 /sbin/insmod /mnt/local/ad5686.ko dyndbg=+p
 /sbin/insmod /mnt/local/ad5696-i2c.ko dyndbg=+p
 else
-/sbin/insmod /usr/local/lib/modules/ad5686.ko
-/sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko
+/sbin/insmod /usr/local/lib/modules/ad5686.ko     $SCDAC_DBG
+/sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko $SCDAC_DBG
 fi
 
 #configure_dac /sys/bus/iio/devices/iio:device1 dac1@elf1 1 1

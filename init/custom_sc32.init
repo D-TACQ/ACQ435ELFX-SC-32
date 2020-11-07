@@ -93,7 +93,8 @@ configure_dac() {
 	echo configure_dac $1 $node $site $c1
 	
 	for off in $(seq 0 7); do
-		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac$c1
+	    c01=$(printf "%02d" $c1)
+		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac$c01
 		c1=$(($c1+1))
 	done
 }

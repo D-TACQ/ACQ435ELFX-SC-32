@@ -1,8 +1,8 @@
-record(ao, "${UUT}:${SITE}:SC32:OFFSET:${cid}") {
+record(ao, "${UUT}:${SITE}:SC32:OFFSET:${CH}") {
 	field(DTYP, "dsSysfsAo")
-	field(OUT, "@/dev/acq400.${SITE}.knobs/dac${cid}")
+	field(OUT, "@/dev/acq400.${SITE}.knobs/dac${CH}")
 	field(SCAN, "Passive")
-	field(DESC, "Offset ${cid}")
+	field(DESC, "Offset ${CH}")
 	field(DRVL, "-2.5")
 	field(DRVH, "+2.4999")
 	field(LINR, "LINEAR")

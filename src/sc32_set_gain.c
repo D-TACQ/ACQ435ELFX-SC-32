@@ -9,14 +9,15 @@
  * SITE: 1,3,5
  *
  *
- * sc_set_gain	0x01	G2113	G2109	G2105
- * sc_set_gain	0x02	G2114	G2110	G2106
- * sc_set_gain	0x04	G2115	G2111	G2107
- * sc_set_gain	0x08	G2116	G2112	G2108
- * sc_set_gain	0x10	G2129	G2125	G2121
- * sc_set_gain	0x20	G2130	G2126	G2122
- * sc_set_gain	0x40	G2131	G2127	G2123
- * sc_set_gain	0x80	G2132	G2128	G2124
+sc_set_gain	0x01	G2113	G2109	G2105	G2101
+sc_set_gain	0x02	G2114	G2110	G2106	G2102
+sc_set_gain	0x04	G2115	G2111	G2107	G2103
+sc_set_gain	0x08	G2116	G2112	G2108	G2104
+sc_set_gain	0x10	G2129	G2125	G2121	G2117
+sc_set_gain	0x20	G2130	G2126	G2122	G2118
+sc_set_gain	0x40	G2131	G2127	G2123	G2119
+sc_set_gain	0x80	G2132	G2128	G2124	G2120
+
  *
  */
 

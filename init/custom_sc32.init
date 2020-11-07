@@ -32,6 +32,7 @@ configure_elfx() {
 	
 	mkdir -p /dev/acq400/$site
 	echo 1 > /etc/acq400/$site/ELFX32
+	ln -s /usr/local/bin/sc32_set_gain /etc/acq400/$site
 	mkdir -p /dev/gpio/ELFX_SC/$site/
 	
 	echo $descr20 > /dev/gpio/ELFX_SC/$site/chip20

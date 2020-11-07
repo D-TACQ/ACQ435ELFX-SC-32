@@ -1,0 +1,89 @@
+# sc32_gain_mux.db .. staging to control gain mux.
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl0") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x01 G2113 G2109 G2105	G2101" )
+	field(INPA, "0x01")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl1") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x02 G2114 G2110 G2106 G2102" )
+	field(INPA, "0x02")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl2") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x04 G2115 G2111 G2107 G2103" )
+	field(INPA, "0x04")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl3") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x08 G2116 G2112 G2108	G2104" )
+	field(INPA, "0x08")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl4") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x10 G2129 G2125 G2121 G2117" )
+	field(INPA, "0x10")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl5") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x20 G2130 G2126 G2122	G2118" )
+	field(INPA, "0x20")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl6") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x40 G2131 G2127 G2123	G2119" )
+	field(INPA, "0x40")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}
+
+record (calcout, "${UUT}:${SITE}:SC32:mux:shl7") {
+	field(DTYP, "stream")
+	field(OUT,  "@gain_mux.proto write_mux ${SPORT}")
+	field(DESC, "sc_set_gain 0x80 G2132 G2128 G2124	G2120" )
+	field(INPA, "0x80")
+	field(INPB, "0x0")
+	field(INPC, "0x0")
+	field(INPD, "0x0")
+	field(INPE, "0x0")
+}

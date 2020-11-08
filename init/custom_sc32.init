@@ -36,7 +36,7 @@ configure_elfx() {
 	mkdir -p /dev/gpio/ELFX_SC/$site/
 	
 	echo $descr20 > /dev/gpio/ELFX_SC/$site/chip20
-	echo $descr20 > /dev/gpio/ELFX_SC/$site/chip21
+	echo $descr21 > /dev/gpio/ELFX_SC/$site/chip21
 	
 	(
 	cd /sys/class/gpio

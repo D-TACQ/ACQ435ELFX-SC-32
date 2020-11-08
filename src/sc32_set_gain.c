@@ -36,13 +36,15 @@ sc_set_gain	0x80	G2132	G2128	G2124	G2120
 
 #include <stdlib.h>
 
+#include <syslog.h>
+
 
 
 int site = 1;
 char chip20[4];
 char chip21[4];
 
-int verbose = 0;
+int verbose = 1;
 
 unsigned OFFSETS[] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
 int ONES[]         = { 1, 1, 1, 1, 1, 1, 1, 1 };
@@ -67,13 +69,16 @@ void set_bits(const char* device, unsigned *offsets, int *values, int nbits)
 {
 	int rv;
 
+
 	if (verbose){
-		int ib;
+		char args[80];
+		char* cursor = args;
+
 		printf("set_bits %s %d:");
-		for (ib = 0; ib < nbits; ++ib){
-			printf("%d=%d ", offsets[ib], values[ib]);
+		for (int ib = 0; ib < nbits; ++ib){
+			cursor += sprintf(cursor, "%d=%d ", offsets[ib], values[ib]);
 		}
-		printf("\n");
+		syslog (LOG_INFO, "set_bits %s %s\n", device, args);
 	}
 	rv = gpiod_ctxless_set_value_multiple(
 			device, offsets, values, nbits, 0, "gpioset",  NULL, 0);
@@ -90,6 +95,13 @@ int main(int argc, char* argv[])
 	int maskbits[8];
 	int values[16];
 	unsigned iv = 16;
+	unsigned mask;
+
+	setlogmask (LOG_UPTO (LOG_INFO));
+
+	openlog ("sc32_set_gain", LOG_CONS | LOG_PID | LOG_NDELAY, LOG_LOCAL1);
+
+
 
 	if (getenv("SITE")){
 		site = atoi(getenv("SITE"));
@@ -100,20 +112,21 @@ int main(int argc, char* argv[])
 	sprintf(chip20, "%d", get_knob(site, 0));
 	sprintf(chip21, "%d", get_knob(site, 1));
 
-	for (ii = 1; ii < argc && ii <= 1+1+4; ++ii){
-		unsigned arg = strtoul(argv[ii], 0, 0);
-		if (ii==1){
-			unsigned cursor = 8;
-			unsigned mask = arg&0xff;
-			unsigned im = 0;
-			for ( ; cursor--; im++ ){
-				maskbits[im] = !(mask&(1<<cursor));
-			}
-		}else{
-			values[--iv] = arg&0x8;
-			values[--iv] = arg&0x4;
-			values[--iv] = arg&0x2;
-			values[--iv] = arg&0x1;
+	if (argc < 3){
+		fprintf(stderr, "usage: sc32_set-gain STROBE_MASK GAIN16\n");
+		exit(1);
+	}else{
+		unsigned mask = strtoul(argv[1], 0, 0);
+		unsigned gain16 = strtoul(argv[2], 0, 0);
+
+		syslog (LOG_INFO, "set_gain %02x %04x\n", mask, gain16);
+
+		for (unsigned cursor = 0x8, im = 0; cursor--; im++ ){
+			maskbits[im] = !!(mask&(1<<cursor));
+		}
+
+		for(unsigned cursor = 0x8000, iv = 16; iv--; cursor >>= 1){
+			values[iv] = !!(gain16&cursor);
 		}
 	}
 

@@ -121,8 +121,8 @@ int main(int argc, char* argv[])
 
 		syslog (LOG_INFO, "set_gain %02x %04x\n", mask, gain16);
 
-		for (unsigned cursor = 0x8, im = 0; cursor--; im++ ){
-			maskbits[im] = !(mask&(1<<cursor));		// invert
+		for (unsigned cursor = 0x80, im = 8; im--; cursor >>= 1 ){
+			maskbits[im] = !(mask&cursor);		// invert
 		}
 
 		for(unsigned cursor = 0x8000, iv = 16; iv--; cursor >>= 1){

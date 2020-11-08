@@ -1,0 +1,9 @@
+Terminator = LF;
+ExtraInput = Ignore;
+ReplyTimeout = 2500;
+
+
+write_mux {
+	out "sc32_set_gain 0x\$1 0x%04x";
+	in;
+}

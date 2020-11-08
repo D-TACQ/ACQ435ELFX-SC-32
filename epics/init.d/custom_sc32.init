@@ -1,7 +1,7 @@
 # source me
 # echo "# custom_sc32 init starts
 
-
+[ -e /mnt/local/sysconfig/sc32.sh ] && source /mnt/local/sysconfig/sc32.sh
 
 
 init_sc32_site() {
@@ -17,6 +17,8 @@ init_sc32_site() {
 	dblr '"db/sc32_gainM.db","'${cprams}'"'
 	dblr '"db/sc32_gain_mux.db","'${cprams}'"'
 	dblr '"db/sc32_indicators.db","'${cprams}'"'
+	
+	echo >>/tmp/st_post.cmd "seq sc32_gain_mux \"uut=${HOST},site=${site},verbose=${SC32_VERBOSE:-0}\""
 }
 
 

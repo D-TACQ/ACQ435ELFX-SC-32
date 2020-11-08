@@ -26,14 +26,15 @@ record (mbbo, "${UUT}:${SITE}:SC32:G2:ALL") {
 	field(TWVL, "2")
 	field(THVL, "3")
 	field(FLNK, "${UUT}:${SITE}:SC32:G2:fan")
-
 }
+
 record(dfanout, "${UUT}:${SITE}:SC32:G1:fan") {
 	field(OUTA, "${UUT}:${SITE}:SC32:G1:fan1 PP")
 	field(OUTB, "${UUT}:${SITE}:SC32:G1:fan2 PP")
 	field(OUTC, "${UUT}:${SITE}:SC32:G1:fan3 PP")
-	field(OUTD, "${UUT}:${SITE}:SC32:G1:fan4 PP")
+	field(OUTD, "${UUT}:${SITE}:SC32:G1:fan4 PP")	
 	field(DOL,  "${UUT}:${SITE}:SC32:G1:ALL")
+	
 	field(OMSL, "closed_loop")
 }
 
@@ -93,6 +94,7 @@ record(dfanout, "${UUT}:${SITE}:SC32:G2:fan") {
 	field(OUTB, "${UUT}:${SITE}:SC32:G2:fan2 PP")
 	field(OUTC, "${UUT}:${SITE}:SC32:G2:fan3 PP")
 	field(OUTD, "${UUT}:${SITE}:SC32:G2:fan4 PP")
+	field(OUTE, "${UUT}:${SITE}:SC32:G12:ALL:c")
 	field(DOL,  "${UUT}:${SITE}:SC32:G2:ALL")
 	field(OMSL, "closed_loop")
 }
@@ -150,11 +152,9 @@ record(dfanout, "${UUT}:${SITE}:SC32:G2:fan4") {
 }
 
 
+
 record (calc, "${UUT}:${SITE}:GAIN_CHANGES") {
 	field(INPA, "${UUT}:${SITE}:GAIN_CHANGES")
 	field(CALC, "A+1")
 }
 
-record (longout, "${UUT}:${SITE}:SC32:G12:ALL") {
-	field(DTYP, "Soft Channel")
-}

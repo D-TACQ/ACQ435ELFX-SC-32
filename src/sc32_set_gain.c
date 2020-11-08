@@ -122,11 +122,11 @@ int main(int argc, char* argv[])
 		syslog (LOG_INFO, "set_gain %02x %04x\n", mask, gain16);
 
 		for (unsigned cursor = 0x8, im = 0; cursor--; im++ ){
-			maskbits[im] = !!(mask&(1<<cursor));
+			maskbits[im] = !(mask&(1<<cursor));		// invert
 		}
 
 		for(unsigned cursor = 0x8000, iv = 16; iv--; cursor >>= 1){
-			values[iv] = !!(gain16&cursor);
+			values[iv] = !!(gain16&cursor);			// NON-invert
 		}
 	}
 

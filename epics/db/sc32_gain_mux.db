@@ -2,25 +2,25 @@
 
 record (longout, "${UUT}:${SITE}:SC32:mux:shl0") {
 	field(DTYP, "stream")
-	field(OUT,  "@gain_mux.proto write_mux(0x1) ${SPORT}")
+	field(OUT,  "@gain_mux.proto write_mux(0x01) ${SPORT}")
 	field(DESC, "set_gain 0x01 G2113 G2109 G2105 G2101" )
 }
 
 record (longout, "${UUT}:${SITE}:SC32:mux:shl1") {
 	field(DTYP, "stream")
-	field(OUT,  "@gain_mux.proto write_mux(0x2) ${SPORT}")
+	field(OUT,  "@gain_mux.proto write_mux(0x02) ${SPORT}")
 	field(DESC, "set_gain 0x02 G2114 G2110 G2106 G2102" )
 }
 
 record (longout, "${UUT}:${SITE}:SC32:mux:shl2") {
 	field(DTYP, "stream")
-	field(OUT,  "@gain_mux.proto write_mux(0x4) ${SPORT}")
+	field(OUT,  "@gain_mux.proto write_mux(0x04) ${SPORT}")
 	field(DESC, "set_gain 0x04 G2115 G2111 G2107 G2103" )
 }
 
 record (longout, "${UUT}:${SITE}:SC32:mux:shl3") {
 	field(DTYP, "stream")
-	field(OUT,  "@gain_mux.proto write_mux(0x8) ${SPORT}")
+	field(OUT,  "@gain_mux.proto write_mux(0x08) ${SPORT}")
 	field(DESC, "set_gain 0x08 G2116 G2112 G2108 G2104" )
 }
 

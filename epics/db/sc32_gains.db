@@ -9,6 +9,7 @@ record (mbbo, "${UUT}:${SITE}:SC32:G1:${CH}")	{
 	field(ONVL, "1")
 	field(TWVL, "2")
 	field(THVL, "3")
+	field(FLNK, "${UUT}:${SITE}:SC32:G12:${CH}:c")
 }
 
 record (mbbo, "${UUT}:${SITE}:SC32:G2:${CH}")	{
@@ -22,8 +23,21 @@ record (mbbo, "${UUT}:${SITE}:SC32:G2:${CH}")	{
 	field(ONVL, "1")
 	field(TWVL, "2")
 	field(THVL, "3")
-
+	field(FLNK, "${UUT}:${SITE}:SC32:G12:${CH}:c")
 }
+
+field(calcout, "${UUT}:${SITE}:SC32:G12:${CH}:c")
+{
+	field(DTYP, "Soft Channel")
+	field(INPA, "${UUT}:${SITE}:SC32:G1:${CH}")
+	field(INPB, "${UUT}:${SITE}:SC32:G1:${CH}")
+	field(CALC, "A*16+B")
+	field(OUT,  "${UUT}:${SITE}:SC32:G12:${CH}")
+	field(OOPT, "On Change")
+	field(DOPT, "Use OCAL")
+	field(OCAL, "-1")
+}
+
 
 record (longout, "${UUT}:${SITE}:SC32:G12:${CH}") {
 	field(DTYP, "Soft Channel")

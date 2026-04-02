@@ -1,0 +1,34 @@
+#!/bin/sh
+source /usr/local/bin/acq400_init_gpio_common.sh
+
+echo 9 > /proc/sys/kernel/printk
+echo file ad5696-i2c.c +p >/dev/ddc
+
+if [ -e /mnt/local/ad5686.ko ]; then
+    echo "LOAD PATCH MODULES"
+    /sbin/insmod /mnt/local/ad5686.ko dyndbg=+p
+    /sbin/insmod /mnt/local/ad5696-i2c.ko dyndbg=+p
+else
+    /sbin/insmod /usr/local/lib/modules/ad5686.ko     $SCDAC_DBG
+    /sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko $SCDAC_DBG
+fi
+
+configure_dac() {
+    node=$(basename $2)
+    site=${node#*@elf}
+    daclab=${node%@*}
+    c1=${daclab#*dac}
+	echo configure_dac $1 $node $site $c1
+	for off in $(seq 0 7); do
+	    c01=$(printf "%02d" $c1)
+		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac$c01
+		c1=$(($c1+1))
+	done
+}
+
+configure_dac /sys/bus/iio/devices/iio:device1 dac1@elf1 2 1
+	
+for iiodev in /sys/bus/iio/devices/iio\:device*; do
+	node=$(ls -l $iiodev/ | grep of_node | awk '{ print $11}')
+	echo $node | grep -q /dac.*elf && configure_dac $iiodev $node
+done

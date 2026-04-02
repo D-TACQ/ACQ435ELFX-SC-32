@@ -10,90 +10,10 @@
 				compatible="ad5675r";
 				reg=<0x0c>;
 			};
-			dac9@elf1 {
-				compatible="ad5675r";
-				reg=<0x0d>;
-			};			
-			dac17@elf1 {
-				compatible="ad5675r";
-				reg=<0x0e>;
-			};
-			dac25@elf1 {
-				compatible="ad5675r";
-				reg=<0x0f>;
-			};
 			gain@20 {
 				compatible="tca9539";
 				reg=<0x20>;
-			};
-			strobes@21 {
-				compatible="tca9539";
-				reg=<0x21>;
 			};
 		};
 	};
-
-	fragment@1 {
-		target = <&elf3>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;			
-			dac1@elf3 {
-				compatible="ad5675r";
-				reg=<0x0c>;
-			};
-			dac9@elf3 {
-				compatible="ad5675r";
-				reg=<0x0d>;
-			};			
-			dac17@elf3 {
-				compatible="ad5675r";
-				reg=<0x0e>;
-			};
-			dac25@elf3 {
-				compatible="ad5675r";
-				reg=<0x0f>;
-			};
-			gain@20 {
-				compatible="tca9539";
-				reg=<0x20>;
-			};
-			strobes@21 {
-				compatible="tca9539";
-				reg=<0x21>;
-			};
-		};
-	};
-
-	fragment@2 {
-		target = <&elf5>;
-		__overlay__ {
-			#address-cells = <1>;
-			#size-cells = <0>;			
-			dac1@elf5 {
-				compatible="ad5675r";
-				reg=<0x0c>;
-			};
-			dac9@elf5 {
-				compatible="ad5675r";
-				reg=<0x0d>;
-			};			
-			dac17@elf5 {
-				compatible="ad5675r";
-				reg=<0x0e>;
-			};
-			dac25@elf5 {
-				compatible="ad5675r";
-				reg=<0x0f>;
-			};
-			gain@20 {
-				compatible="tca9539";
-				reg=<0x20>;
-			};
-			strobes@21 {
-				compatible="tca9539";
-				reg=<0x21>;
-			};
-		};
-	};	
 };

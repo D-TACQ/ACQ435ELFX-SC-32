@@ -1,10 +1,12 @@
 #!/bin/bash
+set -e
 DC=$(date +%y%m%d%H%M)
 SEQ=33
 PKG=flash_elf
 PACKAGES=../../PACKAGES
 
-
+# compile device tree overlay
+dtc -@ -I dts -O dtb -o flashelf_overlay.dtb flashelf_overlay.dts
 
 rm -Rf opkg/*
 mkdir -p opkg/usr/local/bin \

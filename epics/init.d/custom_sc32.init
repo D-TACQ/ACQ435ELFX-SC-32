@@ -22,6 +22,6 @@ init_sc32_site() {
 }
 
 
-for site in 1 3 5; do
-    [ -e /etc/acq400/$site/ELFX32 ] && init_sc32_site $site
-done
+#for site in 1 3 5; do
+#    [ -e /etc/acq400/$site/ELFX32 ] && init_sc32_site $site
+#done

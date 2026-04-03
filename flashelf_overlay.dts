@@ -2,17 +2,13 @@
 /plugin/;	/* allow undefined label references and record them */
 / {
 	fragment@0 {
-		target = <&elf1>;
+		target = <&elf2>;
 		__overlay__ {
 			#address-cells = <1>;
 			#size-cells = <0>;			
-			dac1@elf1 {
+			dac1@12 {
 				compatible="ad5675r";
 				reg=<0x0c>;
-			};
-			gain@20 {
-				compatible="tca9539";
-				reg=<0x20>;
 			};
 		};
 	};

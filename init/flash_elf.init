@@ -13,22 +13,33 @@ else
     /sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko $SCDAC_DBG
 fi
 
-configure_dac() {
+/usr/local/CARE/load.overlay flashelf_overlay /mnt/flashelf_overlay.dtb
+
+configure_1v_dac() {
     node=$(basename $2)
-    site=${node#*@elf}
+    site=${node#*@site}
     daclab=${node%@*}
     c1=${daclab#*dac}
 	echo configure_dac $1 $node $site $c1
-	for off in $(seq 0 7); do
+	for off in $(seq 0 3); do
 	    c01=$(printf "%02d" $c1)
-		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac$c01
+		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac1vch$c01
 		c1=$(($c1+1))
 	done
 }
 
-configure_dac /sys/bus/iio/devices/iio:device1 dac1@elf1 2 1
-	
-for iiodev in /sys/bus/iio/devices/iio\:device*; do
-	node=$(ls -l $iiodev/ | grep of_node | awk '{ print $11}')
-	echo $node | grep -q /dac.*elf && configure_dac $iiodev $node
-done
+configure_10v_dac() {
+    node=$(basename $2)
+    site=${node#*@site}
+    daclab=${node%@*}
+    c1=${daclab#*dac}
+	echo configure_dac $1 $node $site $c1
+	for off in $(seq 4 5); do
+	    c01=$(printf "%02d" $c1)
+		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac10vch$c01
+		c1=$(($c1+1))
+	done
+}
+
+configure_1v_dac /sys/bus/iio/devices/iio:device1 dac1@site2
+configure_10v_dac /sys/bus/iio/devices/iio:device1 dac1@site2

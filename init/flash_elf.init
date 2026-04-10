@@ -43,3 +43,17 @@ configure_10v_dac() {
 
 configure_1v_dac /sys/bus/iio/devices/iio:device1 dac1@site2
 configure_10v_dac /sys/bus/iio/devices/iio:device1 dac1@site2
+
+# gpios
+configure_gpios() {
+    site=$1
+    echo configure_gpios $site
+    for off in $(seq 1 8); do
+        c01=$(printf "%01d" $off)
+        ln -s /dev/acq.${site}.knobs/gpio_dir_$c01 /etc/acq400/$site/gpio_dir_$c01
+        ln -s /dev/acq.${site}.knobs/gpio_out_$c01 /etc/acq400/$site/gpio_out_$c01
+        ln -s /dev/acq.${site}.knobs/gpio_in_$c01 /etc/acq400/$site/gpio_in_$c01
+    done
+}
+
+configure_gpios 2

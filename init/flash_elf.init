@@ -18,27 +18,14 @@ fi
 configure_1v_dac() {
     node=$(basename $2)
     site=${node#*@site}
-    daclab=${node%@*}
-    c1=${daclab#*dac}
-	echo configure_dac $1 $node $site $c1
-	for off in $(seq 0 3); do
-	    c01=$(printf "%02d" $c1)
-		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac1vch$c01
-		c1=$(($c1+1))
-	done
+    ln -s /usr/local/CARE/dac_1v_16b /etc/acq400/$site/dac1v
 }
 
 configure_10v_dac() {
     node=$(basename $2)
     site=${node#*@site}
-    daclab=${node%@*}
-    c1=${daclab#*dac}
-	echo configure_dac $1 $node $site $c1
-	for off in $(seq 4 5); do
-	    c01=$(printf "%02d" $c1)
-		ln -s $1/out_voltage${off}_raw /etc/acq400/$site/dac10vch$c01
-		c1=$(($c1+1))
-	done
+    echo configure_dac $1 $node $site $c1
+    ln -s /usr/local/CARE/dac_10v_16b /etc/acq400/$site/dac10v
 }
 
 configure_1v_dac /sys/bus/iio/devices/iio:device1 dac1@site2

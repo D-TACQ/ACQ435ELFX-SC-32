@@ -1,0 +1,78 @@
+#!/bin/sh
+
+# The argument passed by the system (e.g., "2" or "2,0.33")
+INPUT=$1
+
+if [ -z "$INPUT" ]; then
+    echo "Error: No input provided. Expected format <channel> or <channel>,<voltage>" >&2
+    exit 1
+fi
+
+# Pass the input string into awk, splitting fields by comma
+echo "$INPUT" | awk -F',' -v max_v=1 -v max_code=65535 '
+{
+    ch = $1
+
+    # Validate that channel is a positive integer
+    if (ch !~ /^[1-9][0-9]*$/) {
+        print "Error: Invalid channel \x27" ch "\x27" > "/dev/stderr"
+        exit 1
+    }
+
+    # Calculate IIO channel index (Channel 1 -> 0, Channel 2 -> 1, etc.)
+    if (ch < 1 || ch > 4) {
+        print "Error: Channel out of bounds" > "/dev/stderr"
+    }
+
+    idx = ch - 1
+    target_file = "/sys/bus/iio/devices/iio:device1/out_voltage" idx "_raw"
+
+    # READ MODE: Only 1 argument provided (e.g., "2")
+    if (NF == 1) {
+        # Read the first line from the target file
+        if ((getline raw_code < target_file) > 0) {
+            print raw_code
+        } else {
+            print "Error: Cannot read from " target_file > "/dev/stderr"
+            exit 1
+        }
+        close(target_file)
+        exit 0
+    }
+
+    # WRITE MODE: 2 arguments provided (e.g., "2,0.33")
+    if (NF == 2) {
+        v = $2
+
+        # Validate that voltage is a proper number
+        if (v !~ /^-?[0-9]*\.?[0-9]+$/) {
+            print "Error: Invalid numeric voltage \x27" v "\x27" > "/dev/stderr"
+            exit 1
+        }
+
+        # Perform boundary checks (0 to max_v)
+        if (v < 0 || v > max_v) {
+            print "Error: Input voltage (" v ") is out of bounds (0 to " max_v "V)." > "/dev/stderr"
+            exit 1
+        }
+
+        # Apply transfer function: Code = (V_in / max_v) * 65535
+        code = (v / max_v) * max_code
+
+        # Apply "round half up" logic and cast to integer
+        result = int(code + 0.5)
+
+        # Write the raw code to the target sysfs file
+        print result > target_file
+        close(target_file)
+
+        # Print confirmation to stdout
+        print "Set Channel " ch " to " v "V (Raw Code: " result " written to " target_file ")"
+        
+        exit 0
+    }
+
+    # ERROR MODE: More than 2 arguments
+    print "Error: Invalid format. Expected <channel> or <channel>,<voltage>" > "/dev/stderr"
+    exit 1
+}'

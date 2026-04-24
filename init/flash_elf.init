@@ -13,7 +13,7 @@ else
     /sbin/insmod /usr/local/lib/modules/ad5696-i2c.ko $SCDAC_DBG
 fi
 
-/usr/local/CARE/load.overlay flashelf_overlay /mnt/flashelf_overlay.dtb
+/usr/local/CARE/load.overlay flashelf_overlay /usr/local/CARE/flashelf_overlay.dtb
 
 configure_1v_dac() {
     node=$(basename $2)
